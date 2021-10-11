@@ -16,4 +16,20 @@ for i in range(num):
     print(i, end="! \n" )
 print("Completed, have a nice day!")
 
+print("""
+
+What is phyton?
+
+1.Snake
+2.programming language
+3.reception in the fight
+""")
+def answers(my_answer):
+    answer = int(input())
+    if answer == 2:
+        print("Congratulations, have a nice day!")
+    else:
+        print("Please, try again.")
+        answers("1")
+answers("2")
 
