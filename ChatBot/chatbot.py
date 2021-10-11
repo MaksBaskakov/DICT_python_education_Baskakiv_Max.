@@ -1,2 +1,5 @@
 print("Hello my name is kak tebe ugodno")
 print("I was created in 2021")
+print('Please, remind me your name')
+name = str(input())
+print('What a great name you have, ' + name +  "!")
