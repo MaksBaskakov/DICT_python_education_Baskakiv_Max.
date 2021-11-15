@@ -54,18 +54,18 @@ beans = 120
 cups = 9
 money = 550
 
-latte_water=350
-latte_milk=75
-latte_beans=20
+latte_water = 350
+latte_milk = 75
+latte_beans = 20
 
-cappucino_water=200
-cappucino_milk=100
-cappucino_beans=12
+cappucino_water = 200
+cappucino_milk = 100
+cappucino_beans = 12
 
-espresso_water=250
-espresso_beans=16
+espresso_water = 250
+espresso_beans = 16
 
-tupa_1=1
+tupa_1 = 1
 
 cupLatte_water = water // latte_water
 cupLatte_milk = milk // latte_milk
@@ -79,22 +79,27 @@ numberCappucino = min(cupCappucino_water, cupCappucino_milk, cupCappucino_beans)
 
 cupEspresso_water = water // espresso_water
 cupEspresso_beans = beans // espresso_beans
-numberEspresso = min(cupEspresso_water,  cupEspresso_beans)
+numberEspresso = min(cupEspresso_water, cupEspresso_beans)
 
 
-def content():
+class CoffeMachine:
+    def __init__(self):
+        self.water = 400
+        self.milk = 540
+        self.beans = 120
+        self.cups = 9
+        self.money = 550
+
+def content(self):
     print('The coffee machine has:')
-    print(str(water) + ' of water')
-    print(str(milk) + ' of milk')
-    print(str(beans) + ' of coffee beans')
-    print(str(cups) + ' of disposable cups')
-    print(str(money) + ' of money' )
+    print(str(self.water) + ' of water')
+    print(str(self.milk) + ' of milk')
+    print(str(self.beans) + ' of coffee beans')
+    print(str(self.cups) + ' of disposable cups')
+    print(str(self.money) + ' of money')
+    # CoffeMachine.content()
 
-
-content()
-
-
-def buy():
+def buy(self):
     global water
     global milk
     global beans
@@ -104,6 +109,7 @@ def buy():
     global numberLatte
     global numberCappucino
     global tupa_1
+
     cupLatte_water = water // latte_water
     cupLatte_milk = milk // latte_milk
     cupLatte_beans = beans // latte_beans
@@ -122,41 +128,39 @@ def buy():
 
     type_coffe = int(input())
     if type_coffe == 1:
-        if numberEspresso>=tupa_1 and cups >= 1:
+        if numberEspresso >= tupa_1 and cups >= 1:
             print('Sha sdelaem')
-            water -= 250
-            beans -= 16
-            cups -= 1
-            money += 4
+            self.water -= 250
+            self.beans -= 16
+            self.cups -= 1
+            self.money += 4
         else:
             print('Ne hvataet')
     elif type_coffe == 2:
         if numberLatte >= 1 and cups >= 1:
             print(numberLatte)
             print('SHa sdelaem')
-            water -= 350
-            milk -= 75
-            beans -= 20
-            cups -= 1
-            money += 7
+            self.water -= 350
+            self.milk -= 75
+            self.beans -= 20
+            self.cups -= 1
+            self.money += 7
         else:
             print("Ne hvataet")
-    elif type_coffe == 3 :
-        if numberCappucino >=tupa_1 and cups >= 1:
+    elif type_coffe == 3:
+        if numberCappucino >= tupa_1 and cups >= 1:
             print("Sha sdelaem")
-            water -= 200
-            milk -= 100
-            beans -= 12
-            cups -= 1
-            money += 6
+            self.water -= 200
+            self.milk -= 100
+            self.beans -= 12
+            self.cups -= 1
+            self.money += 6
         else:
             print('Ne hvataet')
-    elif type_coffe==4:
-        action()
+    elif type_coffe == 4:
+        action(object)
 
-
-
-def fill():
+def fill(self):
     global water
     global milk
     global beans
@@ -164,70 +168,46 @@ def fill():
     global cups
     print("Write how many ml of water you want to add:")
     fill_water = int(input())
-    water += fill_water
+    self.water += fill_water
     print("Write how many ml of milk you want to add:")
     fill_milk = int(input())
-    milk += fill_milk
+    self.milk += fill_milk
     print("Write how many grams of coffee beans you want to add:")
     fill_beans = int(input())
-    beans += fill_beans
+    self.beans += fill_beans
     print("Write how many disposable coffee cups you want to add:")
     fill_cups = int(input())
-    cups += fill_cups
+    self.cups += fill_cups
 
-
-def take():
-    global money
-    print("I gave you " + str(money) + "\n")
-    money = 0
+def take(self):
+    print("I gave you " + str(self.money) + "\n")
+    self.money = 0
 
 def exit():
     print('Glhf')
 
-
-def action():
+def action(object):
     print('Write action (buy, fill, take, remaining, exit):')
     user_action = input()
     if user_action == 'buy':
-        buy()
-        action()
+        buy(object)
+        action(object)
     elif user_action == 'fill':
-        fill()
-        action()
+        fill(object)
+        action(object)
     elif user_action == 'exit':
         exit()
 
     elif user_action == 'remaining':
-        content()
-        action()
+        content(object)
+        action(object)
     elif user_action == 'take':
-        take()
-        action()
-
-action()
+        take(object)
+        action(object)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CM = CoffeMachine()
+action(CM)
 # water = k_cups * coffee_water
 # milk = k_cups * coffee_milk
 # beans = k_cups * coffee_beans
@@ -235,4 +215,3 @@ action()
 # print(str(water) + ' ml of water')
 # print(str(milk) + ' ml of milk')
 # print(str(beans) + ' g of coffee beans')
-
