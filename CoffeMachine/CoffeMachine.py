@@ -54,6 +54,34 @@ beans = 120
 cups = 9
 money = 550
 
+latte_water=350
+latte_milk=75
+latte_beans=20
+
+cappucino_water=200
+cappucino_milk=100
+cappucino_beans=12
+
+espresso_water=250
+espresso_beans=16
+
+tupa_1=1
+
+cupLatte_water = water // latte_water
+cupLatte_milk = milk // latte_milk
+cupLatte_beans = beans // latte_beans
+numberLatte = min(cupLatte_water, cupLatte_milk, cupLatte_beans)
+
+cupCappucino_water = water // cappucino_water
+cupCappucino_milk = milk // cappucino_milk
+cupCappucino_beans = beans // cappucino_beans
+numberCappucino = min(cupCappucino_water, cupCappucino_milk, cupCappucino_beans)
+
+cupEspresso_water = water // espresso_water
+cupEspresso_beans = beans // espresso_beans
+numberEspresso = min(cupEspresso_water,  cupEspresso_beans)
+
+
 def content():
     print('The coffee machine has:')
     print(str(water) + ' of water')
@@ -64,33 +92,68 @@ def content():
 
 
 content()
-print("")
+
 
 def buy():
-    print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino:')
     global water
     global milk
     global beans
     global money
     global cups
+    global numberEspresso
+    global numberLatte
+    global numberCappucino
+    global tupa_1
+    cupLatte_water = water // latte_water
+    cupLatte_milk = milk // latte_milk
+    cupLatte_beans = beans // latte_beans
+    numberLatte = min(cupLatte_water, cupLatte_milk, cupLatte_beans)
+
+    cupEspresso_water = water // espresso_water
+    cupEspresso_beans = beans // espresso_beans
+    numberEspresso = min(cupEspresso_water, cupEspresso_beans)
+
+    cupCappucino_water = water // cappucino_water
+    cupCappucino_milk = milk // cappucino_milk
+    cupCappucino_beans = beans // cappucino_beans
+    numberCappucino = min(cupCappucino_water, cupCappucino_milk, cupCappucino_beans)
+
+    print('What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino 4-go back to main menu:')
+
     type_coffe = int(input())
     if type_coffe == 1:
-        water -= 250
-        beans -= 16
-        cups -= 1
-        money += 4
+        if numberEspresso>=tupa_1 and cups >= 1:
+            print('Sha sdelaem')
+            water -= 250
+            beans -= 16
+            cups -= 1
+            money += 4
+        else:
+            print('Ne hvataet')
     elif type_coffe == 2:
-        water -= 350
-        milk -= 75
-        beans -= 20
-        cups -= 1
-        money += 7
-    elif type_coffe == 3:
-        water -= 200
-        milk -= 100
-        beans -= 12
-        cups -= 1
-        money += 6
+        if numberLatte >= 1 and cups >= 1:
+            print(numberLatte)
+            print('SHa sdelaem')
+            water -= 350
+            milk -= 75
+            beans -= 20
+            cups -= 1
+            money += 7
+        else:
+            print("Ne hvataet")
+    elif type_coffe == 3 :
+        if numberCappucino >=tupa_1 and cups >= 1:
+            print("Sha sdelaem")
+            water -= 200
+            milk -= 100
+            beans -= 12
+            cups -= 1
+            money += 6
+        else:
+            print('Ne hvataet')
+    elif type_coffe==4:
+        action()
+
 
 
 def fill():
@@ -118,22 +181,34 @@ def take():
     print("I gave you " + str(money) + "\n")
     money = 0
 
+def exit():
+    print('Glhf')
+
 
 def action():
-    print('Write action (buy, fill, take):')
+    print('Write action (buy, fill, take, remaining, exit):')
     user_action = input()
     if user_action == 'buy':
         buy()
-        content()
+        action()
     elif user_action == 'fill':
         fill()
+        action()
+    elif user_action == 'exit':
+        exit()
+
+    elif user_action == 'remaining':
         content()
+        action()
     elif user_action == 'take':
         take()
-        content()
-
+        action()
 
 action()
+
+
+
+
 
 
 
