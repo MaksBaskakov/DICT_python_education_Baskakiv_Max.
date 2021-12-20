@@ -88,3 +88,5 @@ if arguments.type:
         else: print("Incorrect parameters")
     else: print("Incorrect parameters")
 else: print("Incorrect parameters")
+
+# -type=diff --principal=500000 --periods=8 -- interest=2 
