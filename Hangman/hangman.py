@@ -243,7 +243,7 @@ def start():
             print(len(code_letter) * '_ ', end='')
             main(turns, user_letters, code_letter)
         else:
-            break
+            exit()
 
 
 if __name__ == '__main__':
